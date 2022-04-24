@@ -34,3 +34,4 @@
 # MacOS
 *.DS_Store
 .vscode/
+*.code-workspace
