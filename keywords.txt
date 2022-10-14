@@ -9,7 +9,7 @@
 ArduinoZigbee	KEYWORD1
 ZIGBEE	KEYWORD1
 
-ZigbeeDevice	EYWORD1
+ZigbeeDevice	KEYWORD1
 ZigbeeDimmableLight	KEYWORD1
 ZigbeeTemperatureSensor	KEYWORD1
 

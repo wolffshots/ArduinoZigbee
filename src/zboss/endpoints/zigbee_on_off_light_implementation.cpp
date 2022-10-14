@@ -94,6 +94,25 @@ zb_uint8_t ZigbeeOnOffOutputImplementation::processCommandEP(zb_bufid_t bufid, z
     {
         setState((zb_bool_t) false);
         return ZB_TRUE;
+    } else if(
+        cmd_params->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV &&
+        !cmd_params->is_common_command &&
+        cmd_params->cluster_id == ZB_ZCL_CLUSTER_ID_IDENTIFY && 
+        cmd_params->cmd_id == ZB_ZCL_CMD_IDENTIFY_IDENTIFY_ID
+    ) {
+        interface()->m_identify_callback(ZigbeeEndpoint::IdentifyEffect::kBlink);
+        return ZB_TRUE;
+    } else if(
+        cmd_params->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV &&
+        !cmd_params->is_common_command &&
+        cmd_params-> cluster_id == ZB_ZCL_CLUSTER_ID_ON_OFF
+    ) {
+        // on_off cluster called
+    } else if(
+        cmd_params->cmd_direction == ZB_ZCL_FRAME_DIRECTION_TO_SRV &&
+        !cmd_params->is_common_command
+    ){
+        // uncommon command called
     }
     return ZB_FALSE;
 }
@@ -112,6 +131,7 @@ zb_ret_t ZigbeeOnOffOutputImplementation::processCommandDV(zb_zcl_device_callbac
         onIdentify(&cmd_params->cb_param.identify_effect_value_param);
         return RET_OK;
     default:
+        Serial.println("unhandled command in processCommandDV");
         return RET_ERROR;
     }
 }
@@ -163,7 +183,9 @@ zb_uint8_t ZigbeeOnOffOutputImplementation::setAttribute(zb_zcl_set_attr_value_p
             return ZB_TRUE;
         }
         break;
-    default:;
+    default:
+        Serial.println("unhandled cluster id");
+        Serial.println(attr_p->cluster_id);
     }
     return ZB_FALSE;
 }

@@ -10,6 +10,7 @@ At the moment this variant is available on the branch `nordic-zigbee-support` of
 ## Implemented Home Automation profile devices
 
 - Dimmable Light
+- On/Off Light
 - Temperature Sensor
 - Dimmable switch : partial untested support available on branch `feature/dimmable_switch`
 
