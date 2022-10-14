@@ -113,6 +113,9 @@ zb_uint8_t ZigbeeOnOffOutputImplementation::processCommandEP(zb_bufid_t bufid, z
         !cmd_params->is_common_command
     ){
         // uncommon command called
+        Serial.println("uncommon command in processCommandEP");
+    } else{
+        Serial.println("unhandled command in processCommandEP");
     }
     return ZB_FALSE;
 }

@@ -47,8 +47,8 @@ void setup() {
   while ((!Serial) && (millis() < 10000))
     ; // wait until serial is set up or 10s passes (whichever comes first) - this is only really for debugging, in production you'd not want to delay boot like this
   ZIGBEE.addEndpoint(light1);// add red light
-  // ZIGBEE.addEndpoint(light2);// add green light
-  // ZIGBEE.addEndpoint(light3);// add blue light
+  ZIGBEE.addEndpoint(light2);// add green light
+  ZIGBEE.addEndpoint(light3);// add blue light
   Serial.println("added endpoints");
   // If you want to explicitly set the Trust Centre Link Key enable this section
   // uint8_t zb_zll_tc_key[] = {};  // insert TC_KEY as HEX if known (0xFF, 0xFF, ...)
